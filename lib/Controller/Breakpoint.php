@@ -25,7 +25,12 @@ class Controller_Breakpoint extends \AbstractController {
         ))->setParent($l);
 
 
-        if ($this->api->page == 'trace') return;
+        if ($this->api->page == 'trace') {
+            if (isset($this->api->auth)) {
+                $this->api->auth->allowPage('trace');
+            }
+            return;
+        }
         $this->api->breakpoint = $this;
         if (!$this->unique_id) {
             $this->unique_id = uniqid($this->unique_id_prefix);
