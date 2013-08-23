@@ -8,5 +8,11 @@
  */
 namespace x_breakpoint;
 class Grid_Breakpoint extends \Grid_Advanced {
-
+    function init() {
+        parent::init();
+        $this->addColumn('class');
+        $this->addColumn('line');
+        $this->addColumn('function');
+        $this->addColumn('file');
+    }
 }

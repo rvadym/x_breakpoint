@@ -8,7 +8,18 @@
  */
 namespace x_breakpoint;
 class View_Breakpoint extends \AbstractView {
-    public $points = array();
+
+    public $breakpoints = array();
+
+    function init() {
+        parent::init();
+    }
+    function prepare() {
+        foreach ($this->breakpoints as $k=>$v) {
+            $this->add('View')->set($k);
+            //$this->add('x_breakpoint/Grid_Breakpoint')->setSource($v);
+        }
+    }
 
     function render(){
         /*
