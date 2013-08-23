@@ -16,6 +16,15 @@ class Controller_Breakpoint extends \AbstractController {
 
     function init() {
         parent::init();
+
+        // add location of trace page
+        $l = $this->api->locate('addons',__NAMESPACE__,'location');
+        $addon_location = $this->api->locate('addons',__NAMESPACE__);
+        $this->api->pathfinder->addLocation($addon_location,array(
+            'page'=>array('page'),
+        ))->setParent($l);
+
+
         if ($this->api->page == 'trace') return;
         $this->api->breakpoint = $this;
         if (!$this->unique_id) {
